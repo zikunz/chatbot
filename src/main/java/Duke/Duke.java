@@ -12,7 +12,6 @@ public class Duke {
          */
 
         greet();
-
         Scanner in = new Scanner(System.in);
         String userInput = "";
         boolean isInvalid = true;
