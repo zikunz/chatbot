@@ -23,7 +23,7 @@ public class Task {
         this.isDone = true;
     }
 
-    public String getType() {
-        return "\u2718";
+    public char getType() {
+        return '\u2718';
     }
 }

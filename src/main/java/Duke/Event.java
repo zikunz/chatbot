@@ -13,8 +13,8 @@ public class Event extends Task {
     }
 
     @Override
-    public String getType() {
-        return "E";
+    public char getType() {
+        return 'E';
     }
 
     @Override

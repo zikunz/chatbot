@@ -8,8 +8,8 @@ public class Todo extends Task {
     }
 
     @Override
-    public String getType() {
-        return "T";
+    public char getType() {
+        return 'T';
     }
 
     @Override

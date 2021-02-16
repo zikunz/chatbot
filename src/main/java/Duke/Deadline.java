@@ -13,8 +13,8 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String getType() {
-        return "D";
+    public char getType() {
+        return 'D';
     }
 
     @Override
