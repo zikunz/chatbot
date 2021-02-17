@@ -251,9 +251,6 @@ public class Duke {
                 isDone = false;
             }
             Task task = new Task("");
-            System.out.println(sentences[0]);
-            System.out.println(sentences[1]);
-            System.out.println(sentences[2]);
             switch(sentences[0]) {
             case "T":
                 task = new Todo(sentences[2], isDone);
