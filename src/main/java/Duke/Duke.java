@@ -1,10 +1,11 @@
 package Duke;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    private static ArrayList <Task> tasks = new ArrayList <Task>();
+    private static ArrayList<Task> tasks = new ArrayList <Task>();
     private static int numberOfTasks;
 
     private static String logo = "     ____        _        \n" +
@@ -38,6 +39,14 @@ public class Duke {
     private static char NOT_DONE_SYMBOL = '\u2718';
 
     public static void main(String[] args) {
+        File file = new File("duke.txt");
+        try {
+            file.createNewFile();
+            readFileContents("duke.txt");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
         greet();
 
         Scanner in = new Scanner(System.in);
@@ -98,6 +107,11 @@ public class Duke {
             Task newTask = new Todo(userInput.substring(5));
             addTask(newTask);
         }
+        try {
+            writeToFile("duke.txt", tasks);
+        } catch (IOException e) {
+            System.out.println("File not found");
+        }
     }
 
     static void addDeadline(String userInput) throws DukeException {
@@ -111,6 +125,11 @@ public class Duke {
                     userInput.substring(userInput.indexOf("/by") + 4));
             addTask(newTask);
         }
+        try {
+            writeToFile("duke.txt", tasks);
+        } catch (IOException e) {
+            System.out.println("File not found");
+        }
     }
 
     static void addEvent(String userInput) throws DukeException {
@@ -123,6 +142,11 @@ public class Duke {
             Task newTask = new Event(userInput.substring(6, userInput.indexOf("/")),
                     userInput.substring(userInput.indexOf("/at") + 4));
             addTask(newTask);
+        }
+        try {
+            writeToFile("duke.txt", tasks);
+        } catch (IOException e) {
+            System.out.println("File not found");
         }
     }
 
@@ -185,5 +209,51 @@ public class Duke {
     static void exit() {
         System.out.println(EXIT_MESSAGE);
         System.exit(0);
+    }
+
+    private static void readFileContents(String filePath) throws FileNotFoundException {
+        File file = new File(filePath);
+        Scanner sentence = new Scanner(file);
+
+
+        while (sentence.hasNext()) {
+            String[] sentences = sentence.nextLine().split("( \\| )");
+
+            boolean isDone;
+            if (sentences[1] == "1") {
+                isDone = true;
+            } else {
+                isDone = false;
+            }
+            Task task = new Task("");
+            System.out.println(sentences[0]);
+            System.out.println(sentences[1]);
+            System.out.println(sentences[2]);
+            switch(sentences[0]) {
+            case "T":
+                task = new Todo(sentences[2], isDone);
+                break;
+            case "D":
+                task = new Deadline(sentences[2], sentences[3], isDone);
+                break;
+            case "E":
+                task = new Event(sentences[2], sentences[3], isDone);
+                break;
+            }
+            tasks.add(task);
+            numberOfTasks++;
+        }
+    }
+
+    private static void writeToFile(String filePath, ArrayList<Task> tasksToAdd) throws IOException {
+        FileWriter fw = new FileWriter(filePath);
+        String text = "";
+
+        for (int i = 0; i < tasksToAdd.size(); i++) {
+            text = text + tasksToAdd.get(i).toPrintedFormat() + "\n";
+        }
+
+        fw.write(text);
+        fw.close();
     }
 }

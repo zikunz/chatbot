@@ -11,6 +11,11 @@ public class Task {
         this.isDone = false;
     }
 
+    public Task(String description, boolean isDone) {
+        this.description = description;
+        this.isDone = isDone;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -24,6 +29,18 @@ public class Task {
     }
 
     public char getType() {
-        return '\u2718';
+        return ' ';
+    }
+
+    public char getIntegerType() {
+        if (isDone) {
+            return '1';
+        } else {
+            return '0';
+        }
+    }
+
+    public String toPrintedFormat() {
+        return "";
     }
 }

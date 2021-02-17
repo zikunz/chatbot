@@ -8,6 +8,11 @@ public class Event extends Task {
         this.period = period;
     }
 
+    public Event(String description, String period, boolean isDone) {
+        super(description, isDone);
+        this.period = period;
+    }
+
     public String getPeriod() {
         return period;
     }
@@ -21,5 +26,10 @@ public class Event extends Task {
     public String toString() {
         return "[" + getType() + "]" + "[" + getStatusIcon() + "] " +
                 description + " (at: " + getPeriod() + ")";
+    }
+
+    @Override
+    public String toPrintedFormat() {
+        return "D | " + super.getIntegerType() + " | " + description + " | " + getPeriod();
     }
 }
