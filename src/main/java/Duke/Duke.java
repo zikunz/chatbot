@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Duke {
     private static ArrayList <Task> tasks = new ArrayList <Task>();
     private static int numberOfTasks;
+    private static boolean addTask;
 
     private static String logo = "     ____        _        \n" +
             "    |  _ \\ _   _| | _____ \n" +
@@ -24,7 +25,7 @@ public class Duke {
     private static String MARK_AS_DONE_MESSAGE = SHORT_SPACE + "Nice! I've marked this task as done:";
     private static String ONE_TASK_IN_LIST_MESSAGE = SHORT_SPACE + "Here is the task in your list:";
     private static String MORE_THAN_ONE_TASK_IN_LIST_MESSAGE = SHORT_SPACE + "Here are the tasks in your list:";
-    private static String WRONG_COMMAND_ERROR_MESSAGE = SHORT_SPACE +
+    private static String WRONG_COMMAND_ERROR_MESSAGE = SEPARATION_LINE + "\n" + SHORT_SPACE +
             "☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n" + SEPARATION_LINE + "\n";
     private static String MISSING_TODO_CONTENT_MESSAGE = SEPARATION_LINE + "\n" +
             SHORT_SPACE + "☹ OOPS!!! The description of a todo cannot be empty.\n" + SEPARATION_LINE + "\n";
@@ -32,6 +33,12 @@ public class Duke {
             SHORT_SPACE + "☹ OOPS!!! The description of a deadline cannot be empty.\n" + SEPARATION_LINE + "\n";
     private static String MISSING_EVENT_CONTENT_MESSAGE = SEPARATION_LINE + "\n" +
             SHORT_SPACE + "☹ OOPS!!! The description of a event cannot be empty.\n" + SEPARATION_LINE + "\n";
+    private static String MISSING_DELETE_INDEX_MESSAGE = SEPARATION_LINE + "\n" +
+            SHORT_SPACE + "☹ OOPS!!! The index of the deletion cannot be empty.\n" + SEPARATION_LINE + "\n";
+    private static String WRONG_DELETE_INDEX_MESSAGE = SEPARATION_LINE + "\n" +
+            SHORT_SPACE + "☹ OOPS!!! The index of the deletion is out of bound.\n" + SEPARATION_LINE + "\n";
+    private static String ADD_TASK_MESSAGE = SHORT_SPACE + "Got it. I've added this task:";
+    private static String REMOVE_TASK_MESSAGE = SHORT_SPACE + "Noted. I've removed this task:";
     private static String EXIT_MESSAGE = SEPARATION_LINE + "\n" + "     Bye. Hope to see you again soon!\n" +
             SEPARATION_LINE;
 
@@ -77,15 +84,19 @@ public class Duke {
         case "list":
             displayList();
             break;
+        case "delete":
+            deleteTask(userInput);
+            break;
         default:
             throw new DukeException(WRONG_COMMAND_ERROR_MESSAGE);
         }
     }
 
-    public static void addTask(Task t) {
-        tasks.add(numberOfTasks, t);
+    public static void addTask(Task task) {
+        tasks.add(numberOfTasks, task);
         numberOfTasks++;
-        echo(t);
+        addTask = true;
+        echo(task, addTask);
     }
 
     static void addTodo(String userInput) throws DukeException {
@@ -133,9 +144,20 @@ public class Duke {
         tasks.set(selectedTask, thisTask);
         printSeparationLine();
         System.out.println(MARK_AS_DONE_MESSAGE);
-        System.out.println("       [" + thisTask.getStatusIcon() + "] " +
+        System.out.println(LONG_SPACE + "[" + thisTask.getStatusIcon() + "] " +
                 thisTask.getDescription());
         printSeparationLine();
+    }
+
+    static void deleteTask(String userInput) {
+        int selectedTask = Integer.parseInt(userInput.substring(7)) - 1;
+        Task thisTask = tasks.get(selectedTask);
+        System.out.println(REMOVE_TASK_MESSAGE);
+
+        tasks.remove(selectedTask);
+        numberOfTasks--;
+        addTask = false;
+        echo(thisTask, addTask);
     }
 
     static void displayList() {
@@ -152,7 +174,7 @@ public class Duke {
         }
 
         for (int i = 0; i < numberOfTasks; i++) {
-            System.out.println("     " + (i + 1) + "." + tasks.get(i));
+            System.out.println(SHORT_SPACE + (i + 1) + "." + tasks.get(i));
         }
         printSeparationLine();
         System.out.println();
@@ -166,12 +188,16 @@ public class Duke {
         System.out.println(SEPARATION_LINE);
     }
 
-    static void echo(Task newTask) {
+    static void echo(Task newTask, boolean addTask) {
         printSeparationLine();
-        System.out.println(LONG_SPACE + "Got it. I've added this task:");
+
+        if (addTask) {
+            System.out.println(ADD_TASK_MESSAGE);
+        } else {
+            System.out.println(REMOVE_TASK_MESSAGE);
+        }
 
         System.out.println(LONG_SPACE + newTask);
-
         if (numberOfTasks == 1) {
             System.out.println(LONG_SPACE + "Now you have " + numberOfTasks + " task in the list.");
         } else {
@@ -179,7 +205,6 @@ public class Duke {
         }
 
         printSeparationLine();
-        System.out.println();
     }
 
     static void exit() {
