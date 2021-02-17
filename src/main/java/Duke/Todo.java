@@ -4,7 +4,10 @@ public class Todo extends Task {
 
     public Todo(String description) {
         super(description);
-        isDone = false;
+    }
+
+    public Todo(String description, boolean isDone) {
+        super(description, isDone);
     }
 
     @Override
@@ -15,5 +18,10 @@ public class Todo extends Task {
     @Override
     public String toString() {
         return "[" + getType() + "]" + "[" + getStatusIcon() + "] " + description;
+    }
+
+    @Override
+    public String toPrintedFormat() {
+        return "T | " + super.getIntegerType() + " | " + description;
     }
 }

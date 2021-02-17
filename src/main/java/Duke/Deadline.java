@@ -8,6 +8,11 @@ public class Deadline extends Task {
         this.deadline = deadline;
     }
 
+    public Deadline(String description, String deadline, boolean isDone) {
+        super(description, isDone);
+        this.deadline = deadline;
+    }
+
     public String getDeadline() {
         return deadline;
     }
@@ -21,5 +26,10 @@ public class Deadline extends Task {
     public String toString() {
         return "[" + getType() + "]" + "[" + getStatusIcon() + "] " +
                 description + " (by: " + getDeadline() + ")";
+    }
+
+    @Override
+    public String toPrintedFormat() {
+        return "D | " + super.getIntegerType() + " | " + description + " | " + getDeadline();
     }
 }
