@@ -1,11 +1,14 @@
 package Duke;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    private static ArrayList<Task> tasks = new ArrayList <Task>();
+    private static ArrayList<Task> tasks = new ArrayList<Task> ();
     private static int numberOfTasks;
     private static boolean addTask;
 
@@ -251,7 +254,7 @@ public class Duke {
                 isDone = false;
             }
             Task task = new Task("");
-            switch(sentences[0]) {
+            switch (sentences[0]) {
             case "T":
                 task = new Todo(sentences[2], isDone);
                 break;
@@ -267,7 +270,7 @@ public class Duke {
         }
     }
 
-    private static void writeToFile(String filePath, ArrayList<Task> tasksToAdd) throws IOException {
+    private static void writeToFile(String filePath, ArrayList<Task>tasksToAdd) throws IOException {
         FileWriter fw = new FileWriter(filePath);
         String text = "";
 
