@@ -3,8 +3,6 @@ package Duke;
 public class Task {
     protected String description;
     protected boolean isDone;
-    private static char NOT_DONE_SYMBOL = '\u2718';
-    private static char DONE_SYMBOL = '\u2713';
 
     public Task(String description) {
         this.description = description;
@@ -21,7 +19,7 @@ public class Task {
     }
 
     public char getStatusIcon() {
-        return (isDone ? DONE_SYMBOL : NOT_DONE_SYMBOL);
+        return (isDone ? Symbol.DONE_SYMBOL : Symbol.NOT_DONE_SYMBOL);
     }
 
     public void setAsDone() {

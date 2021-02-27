@@ -8,51 +8,40 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    private static ArrayList<Task> tasks = new ArrayList<Task> ();
+    private static ArrayList<Task> tasks = new ArrayList<Task>();
     private static int numberOfTasks;
-    private static boolean addTask;
+    private static boolean isAdded;
 
-    private static String logo = "     ____        _        \n" +
-            "    |  _ \\ _   _| | _____ \n" +
-            "    | | | | | | | |/ / _ \\\n" +
-            "    | |_| | |_| |   <  __/\n" +
-            "    |____/ \\__,_|_|\\_\\___|\n";
+    // Constants only used in Duke class
+    private static final String LETTER_T = "T";
+    private static final String LETTER_D = "D";
+    private static final String LETTER_E = "E";
 
-    private static String SEPARATION_LINE = "    ____________________________________________________________";
+    private static final String COMMAND_TODO = "todo";
+    private static final String COMMAND_DEADLINE = "deadline";
+    private static final String COMMAND_EVENT = "event";
+    private static final String COMMAND_DONE = "done";
+    private static final String COMMAND_BYE = "bye";
+    private static final String COMMAND_LIST = "list";
+    private static final String COMMAND_DELETE = "delete";
 
-    private static String SHORT_SPACE = "     ";
-    private static String LONG_SPACE = "       ";
-
-    private static String GREET_MESSAGE = logo + "\n" + SEPARATION_LINE + "\n" + LONG_SPACE + "Hello! I'm Duke\n" +
-            LONG_SPACE + "What can I do for you?\n" + SEPARATION_LINE + "\n";
-    private static String EMPTY_LIST_MESSAGE = SHORT_SPACE + "You do not have any task to do.";
-    private static String MARK_AS_DONE_MESSAGE = SHORT_SPACE + "Nice! I've marked this task as done:";
-    private static String ONE_TASK_IN_LIST_MESSAGE = SHORT_SPACE + "Here is the task in your list:";
-    private static String MORE_THAN_ONE_TASK_IN_LIST_MESSAGE = SHORT_SPACE + "Here are the tasks in your list:";
-    private static String WRONG_COMMAND_ERROR_MESSAGE = SEPARATION_LINE + "\n" + SHORT_SPACE +
-            "☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n" + SEPARATION_LINE + "\n";
-    private static String MISSING_TODO_CONTENT_MESSAGE = SEPARATION_LINE + "\n" +
-            SHORT_SPACE + "☹ OOPS!!! The description of a todo cannot be empty.\n" + SEPARATION_LINE + "\n";
-    private static String MISSING_DEADLINE_CONTENT_MESSAGE = SEPARATION_LINE + "\n" +
-            SHORT_SPACE + "☹ OOPS!!! The description of a deadline cannot be empty.\n" + SEPARATION_LINE + "\n";
-    private static String MISSING_EVENT_CONTENT_MESSAGE = SEPARATION_LINE + "\n" +
-            SHORT_SPACE + "☹ OOPS!!! The description of a event cannot be empty.\n" + SEPARATION_LINE + "\n";
-    private static String MISSING_DELETE_INDEX_MESSAGE = SEPARATION_LINE + "\n" +
-            SHORT_SPACE + "☹ OOPS!!! The index of the deletion cannot be empty.\n" + SEPARATION_LINE + "\n";
-    private static String WRONG_DELETE_INDEX_MESSAGE = SEPARATION_LINE + "\n" +
-            SHORT_SPACE + "☹ OOPS!!! The index of the deletion is out of bound.\n" + SEPARATION_LINE + "\n";
-    private static String ADD_TASK_MESSAGE = SHORT_SPACE + "Got it. I've added this task:";
-    private static String REMOVE_TASK_MESSAGE = SHORT_SPACE + "Noted. I've removed this task:";
-    private static String EXIT_MESSAGE = SEPARATION_LINE + "\n" + "     Bye. Hope to see you again soon!\n" +
-            SEPARATION_LINE;
-
-    private static char NOT_DONE_SYMBOL = '\u2718';
+    private static final int TODO_COMMAND_LENGTH = 4;
+    private static final int TODO_COMMAND_LENGTH_ADD_ONE = 5;
+    private static final int DEADLINE_COMMAND_LENGTH = 8;
+    private static final int DEADLINE_COMMAND_LENGTH_ADD_ONE = 9;
+    private static final int BY_KEYWORD_LENGTH = 4;
+    private static final int EVENT_COMMAND_LENGTH = 5;
+    private static final int EVENT_COMMAND_LENGTH_ADD_ONE = 5;
+    private static final int AT_KEYWORD_LENGTH = 5;
 
     public static void main(String[] args) {
-        File file = new File("duke.txt");
+        File dataDirectory = new File("data");
+        dataDirectory.mkdir();
+        File dukeFile = new File("data/duke.txt");
+
         try {
-            file.createNewFile();
-            readFileContents("duke.txt");
+            dukeFile.createNewFile();
+            readFileContents("data/duke.txt");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -78,87 +67,87 @@ public class Duke {
         String command = userInput.split(" ")[0];
 
         switch (command) {
-        case "todo":
+        case COMMAND_TODO:
             addTodo(userInput);
             break;
-        case "deadline":
+        case COMMAND_DEADLINE:
             addDeadline(userInput);
             break;
-        case "event":
+        case COMMAND_EVENT:
             addEvent(userInput);
             break;
-        case "done":
+        case COMMAND_DONE:
             setTaskToBeDone(userInput);
             break;
-        case "bye":
+        case COMMAND_BYE:
             exit();
             break;
-        case "list":
+        case COMMAND_LIST:
             displayList();
             break;
-        case "delete":
+        case COMMAND_DELETE:
             deleteTask(userInput);
             break;
         default:
-            throw new DukeException(WRONG_COMMAND_ERROR_MESSAGE);
+            throw new DukeException(Message.WRONG_COMMAND_ERROR_MESSAGE);
         }
     }
 
     public static void addTask(Task task) {
         tasks.add(numberOfTasks, task);
         numberOfTasks++;
-        addTask = true;
-        echo(task, addTask);
+        isAdded = true;
+        echo(task, isAdded);
     }
 
     static void addTodo(String userInput) throws DukeException {
-        String todo = userInput.substring(4);
+        String todo = userInput.substring(TODO_COMMAND_LENGTH);
         todo = todo.replace(" ", "");
 
         if (todo.isEmpty()) {
-            throw new DukeException(MISSING_TODO_CONTENT_MESSAGE);
+            throw new DukeException(Message.MISSING_TODO_CONTENT_MESSAGE);
         } else {
-            Task newTask = new Todo(userInput.substring(5));
+            Task newTask = new Todo(userInput.substring(TODO_COMMAND_LENGTH_ADD_ONE));
             addTask(newTask);
         }
         try {
-            writeToFile("duke.txt", tasks);
+            writeToFile("data/duke.txt", tasks);
         } catch (IOException e) {
             System.out.println("File not found");
         }
     }
 
     static void addDeadline(String userInput) throws DukeException {
-        String deadline = userInput.substring((8));
+        String deadline = userInput.substring((DEADLINE_COMMAND_LENGTH));
         deadline = deadline.replace(" ", "");
 
         if (deadline.isEmpty()) {
-            throw new DukeException(MISSING_DEADLINE_CONTENT_MESSAGE);
+            throw new DukeException(Message.MISSING_DEADLINE_CONTENT_MESSAGE);
         } else {
-            Task newTask = new Deadline(userInput.substring(9, userInput.indexOf("/")),
-                    userInput.substring(userInput.indexOf("/by") + 4));
+            Task newTask = new Deadline(userInput.substring(DEADLINE_COMMAND_LENGTH_ADD_ONE, userInput.indexOf(" /")),
+                    userInput.substring(userInput.indexOf("/by") + BY_KEYWORD_LENGTH));
             addTask(newTask);
         }
         try {
-            writeToFile("duke.txt", tasks);
+            writeToFile("data/duke.txt", tasks);
         } catch (IOException e) {
             System.out.println("File not found");
         }
     }
 
     static void addEvent(String userInput) throws DukeException {
-        String event = userInput.substring((5));
+        String event = userInput.substring((EVENT_COMMAND_LENGTH));
         event = event.replace(" ", "");
 
         if (event.isEmpty()) {
-            throw new DukeException(MISSING_EVENT_CONTENT_MESSAGE);
+            throw new DukeException(Message.MISSING_EVENT_CONTENT_MESSAGE);
         } else {
-            Task newTask = new Event(userInput.substring(6, userInput.indexOf("/")),
-                    userInput.substring(userInput.indexOf("/at") + 4));
+            Task newTask = new Event(userInput.substring(EVENT_COMMAND_LENGTH_ADD_ONE, userInput.indexOf(" /")),
+                    userInput.substring(userInput.indexOf("/at") + AT_KEYWORD_LENGTH));
             addTask(newTask);
         }
         try {
-            writeToFile("duke.txt", tasks);
+            writeToFile("data/duke.txt", tasks);
         } catch (IOException e) {
             System.out.println("File not found");
         }
@@ -170,8 +159,8 @@ public class Duke {
         thisTask.setAsDone();
         tasks.set(selectedTask, thisTask);
         printSeparationLine();
-        System.out.println(MARK_AS_DONE_MESSAGE);
-        System.out.println(LONG_SPACE + "[" + thisTask.getStatusIcon() + "] " +
+        System.out.println(Message.MARK_AS_DONE_MESSAGE);
+        System.out.println(Message.LONG_SPACE + "[" + thisTask.getStatusIcon() + "] " +
                 thisTask.getDescription());
         printSeparationLine();
     }
@@ -179,63 +168,56 @@ public class Duke {
     static void deleteTask(String userInput) {
         int selectedTask = Integer.parseInt(userInput.substring(7)) - 1;
         Task thisTask = tasks.get(selectedTask);
-        System.out.println(REMOVE_TASK_MESSAGE);
+        System.out.println(Message.REMOVE_TASK_MESSAGE);
 
         tasks.remove(selectedTask);
         numberOfTasks--;
-        addTask = false;
-        echo(thisTask, addTask);
+        isAdded = false;
+        echo(thisTask, isAdded);
     }
 
     static void displayList() {
         printSeparationLine();
         switch (numberOfTasks) {
         case 0:
-            System.out.println(EMPTY_LIST_MESSAGE);
+            System.out.println(Message.EMPTY_LIST_MESSAGE);
             break;
         case 1:
-            System.out.println(ONE_TASK_IN_LIST_MESSAGE);
+            System.out.println(Message.ONE_TASK_IN_LIST_MESSAGE);
             break;
         default:
-            System.out.println(MORE_THAN_ONE_TASK_IN_LIST_MESSAGE);
+            System.out.println(Message.MORE_THAN_ONE_TASK_IN_LIST_MESSAGE);
         }
 
         for (int i = 0; i < numberOfTasks; i++) {
-            System.out.println(SHORT_SPACE + (i + 1) + "." + tasks.get(i));
+            System.out.println(Message.SHORT_SPACE + (i + 1) + "." + tasks.get(i));
         }
         printSeparationLine();
         System.out.println();
     }
 
     static void greet() {
-        System.out.println(GREET_MESSAGE);
+        System.out.println(Message.GREET_MESSAGE);
     }
 
     static void printSeparationLine() {
-        System.out.println(SEPARATION_LINE);
+        System.out.println(Message.SEPARATION_LINE);
     }
 
-    static void echo(Task newTask, boolean addTask) {
+    static void echo(Task newTask, boolean isAdded) {
         printSeparationLine();
 
-        if (addTask) {
-            System.out.println(ADD_TASK_MESSAGE);
-        } else {
-            System.out.println(REMOVE_TASK_MESSAGE);
-        }
+        Message.printAddOrRemoveTaskMessage(isAdded);
 
-        System.out.println(LONG_SPACE + newTask);
-        if (numberOfTasks == 1) {
-            System.out.println(LONG_SPACE + "Now you have " + numberOfTasks + " task in the list.");
-        } else {
-            System.out.println(LONG_SPACE + "Now you have " + numberOfTasks + " tasks in the list.");
-        }
+        System.out.println(Message.LONG_SPACE + newTask);
+
+        Message.printNumberOfTasksMessage(numberOfTasks);
 
         printSeparationLine();
     }
 
     static void exit() {
-        System.out.println(EXIT_MESSAGE);
+        System.out.println(Message.EXIT_MESSAGE);
         System.exit(0);
     }
 
@@ -255,15 +237,17 @@ public class Duke {
             }
             Task task = new Task("");
             switch (sentences[0]) {
-            case "T":
+            case LETTER_T:
                 task = new Todo(sentences[2], isDone);
                 break;
-            case "D":
+            case LETTER_D:
                 task = new Deadline(sentences[2], sentences[3], isDone);
                 break;
-            case "E":
+            case LETTER_E:
                 task = new Event(sentences[2], sentences[3], isDone);
                 break;
+            default:
+                System.out.println(Message.NON_EXISTING_LETTER_WRONG_MESSAGE);
             }
             tasks.add(task);
             numberOfTasks++;

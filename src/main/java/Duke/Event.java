@@ -30,6 +30,6 @@ public class Event extends Task {
 
     @Override
     public String toPrintedFormat() {
-        return "E | " + super.getIntegerType() + " | " + description + " | " + getPeriod();
+        return "E | " + super.getIntegerType() + " |" + description + " | " + getPeriod();
     }
 }
