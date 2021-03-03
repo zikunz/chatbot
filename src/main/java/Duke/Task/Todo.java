@@ -1,4 +1,6 @@
-package Duke;
+package Duke.Task;
+
+import Duke.Constant.TaskType;
 
 public class Todo extends Task {
 
@@ -11,8 +13,8 @@ public class Todo extends Task {
     }
 
     @Override
-    public char getType() {
-        return 'T';
+    public String getType() {
+        return TaskType.TODO_TYPE;
     }
 
     @Override
@@ -22,6 +24,6 @@ public class Todo extends Task {
 
     @Override
     public String toPrintedFormat() {
-        return "T | " + super.getIntegerType() + " | " + description;
+        return TaskType.TODO_TYPE + " | " + super.getIntegerType() + " | " + description;
     }
 }

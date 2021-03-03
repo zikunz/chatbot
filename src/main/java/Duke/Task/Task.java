@@ -1,4 +1,7 @@
-package Duke;
+package Duke.Task;
+
+import Duke.Constant.Symbol;
+import Duke.Constant.Number;
 
 public class Task {
     protected String description;
@@ -14,11 +17,7 @@ public class Task {
         this.isDone = isDone;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public char getStatusIcon() {
+    public String getStatusIcon() {
         return (isDone ? Symbol.DONE_SYMBOL : Symbol.NOT_DONE_SYMBOL);
     }
 
@@ -26,16 +25,20 @@ public class Task {
         this.isDone = true;
     }
 
-    public char getType() {
-        return ' ';
+    public String getType() {
+        return "";
     }
 
-    public char getIntegerType() {
+    public String getIntegerType() {
         if (isDone) {
-            return '1';
+            return Number.DONE_STATUS;
         } else {
-            return '0';
+            return Number.NOT_DONE_STATUS;
         }
+    }
+
+    public String toString() {
+        return "";
     }
 
     public String toPrintedFormat() {

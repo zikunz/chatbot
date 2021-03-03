@@ -1,4 +1,6 @@
-package Duke;
+package Duke.Task;
+
+import Duke.Constant.TaskType;
 
 public class Event extends Task {
     protected String period;
@@ -18,8 +20,8 @@ public class Event extends Task {
     }
 
     @Override
-    public char getType() {
-        return 'E';
+    public String getType() {
+        return TaskType.EVENT_TYPE;
     }
 
     @Override
@@ -30,6 +32,6 @@ public class Event extends Task {
 
     @Override
     public String toPrintedFormat() {
-        return "E | " + super.getIntegerType() + " |" + description + " | " + getPeriod();
+        return TaskType.EVENT_TYPE + " | " + super.getIntegerType() + " |" + description + " | " + getPeriod();
     }
 }

@@ -1,7 +1,9 @@
-package Duke;
+package Duke.Task;
+
+import Duke.Constant.TaskType;
 
 public class Deadline extends Task {
-    protected String deadline;
+    private String deadline;
 
     public Deadline(String description, String deadline) {
         super(description);
@@ -18,8 +20,8 @@ public class Deadline extends Task {
     }
 
     @Override
-    public char getType() {
-        return 'D';
+    public String getType() {
+        return TaskType.DEADLINE_TYPE;
     }
 
     @Override
@@ -30,6 +32,6 @@ public class Deadline extends Task {
 
     @Override
     public String toPrintedFormat() {
-        return "D | " + super.getIntegerType() + " | " + description + " | " + getDeadline();
+        return TaskType.DEADLINE_TYPE + " | " + super.getIntegerType() + " | " + description + " | " + getDeadline();
     }
 }
