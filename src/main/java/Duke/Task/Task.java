@@ -17,6 +17,10 @@ public class Task {
         this.isDone = isDone;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public String getStatusIcon() {
         return (isDone ? Symbol.DONE_SYMBOL : Symbol.NOT_DONE_SYMBOL);
     }

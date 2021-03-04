@@ -38,6 +38,7 @@ public class Message {
             SpaceAndLine.SEPARATION_LINE + "\n";
     public static final String ADD_TASK_MESSAGE = SpaceAndLine.SHORT_SPACE + "Got it. I've added this task:";
     public static final String REMOVE_TASK_MESSAGE = SpaceAndLine.SHORT_SPACE + "Noted. I've removed this task:";
+    public static final String SHOW_MATCHING_TASKS_MESSAGE = "Here are the matching tasks in your list:";
     public static final String EXIT_MESSAGE = SpaceAndLine.SEPARATION_LINE + "\n" +
             "     Bye. Hope to see you again soon!\n" +
             SpaceAndLine.SEPARATION_LINE;

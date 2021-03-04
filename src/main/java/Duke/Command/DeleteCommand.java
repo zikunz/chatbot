@@ -22,7 +22,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage, TaskList matchedTasks) throws DukeException {
         ui.printMessage(SpaceAndLine.SEPARATION_LINE);
         ui.printMessage(Message.REMOVE_TASK_MESSAGE);
         System.out.println(SpaceAndLine.LONG_SPACE + tasks.getTask(index));
