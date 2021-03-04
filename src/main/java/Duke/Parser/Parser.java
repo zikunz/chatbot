@@ -6,6 +6,9 @@ import Duke.Constant.TaskType;
 import Duke.Exception.DukeException;
 import Duke.Constant.Number;
 
+/**
+ * Calls respective command function to process different user inputs.
+ */
 public class Parser {
     private static final String COMMAND_TODO = "todo";
     private static final String COMMAND_DEADLINE = "deadline";
@@ -16,6 +19,12 @@ public class Parser {
     private static final String COMMAND_DELETE = "delete";
     private static final String COMMAND_FIND = "find";
 
+    /**
+     * This function calls the correct command to process different user inputs.
+     *
+     * @param userInput user input entered
+     * @throws DukeException includes all exceptions may happen during parsing
+     */
     public Command processInput(String userInput) throws DukeException {
         String command = userInput.split(" ")[0];
 
