@@ -1,11 +1,6 @@
 package Duke.Parser;
 
-import Duke.Command.AddCommand;
-import Duke.Command.Command;
-import Duke.Command.DeleteCommand;
-import Duke.Command.DoneCommand;
-import Duke.Command.ExitCommand;
-import Duke.Command.ListCommand;
+import Duke.Command.*;
 import Duke.Constant.Message;
 import Duke.Constant.TaskType;
 import Duke.Exception.DukeException;
@@ -22,6 +17,7 @@ public class Parser {
     private static final String COMMAND_BYE = "bye";
     private static final String COMMAND_LIST = "list";
     private static final String COMMAND_DELETE = "delete";
+    private static final String COMMAND_FIND = "find";
 
     /**
      * This function calls the correct command to process different user inputs.
@@ -69,6 +65,8 @@ public class Parser {
         case COMMAND_DELETE:
             return new DeleteCommand
                     (Integer.parseInt(userInput.substring(Number.DELETE_COMMAND_LENGTH_ADD_ONE)) - 1);
+        case COMMAND_FIND:
+            return new FindCommand(userInput.substring(Number.FIND_COMMAND_LENGTH_ADD_ONE));
         default:
             throw new DukeException(Message.WRONG_COMMAND_ERROR_MESSAGE);
         }

@@ -24,7 +24,7 @@ public class ExitCommand extends Command {
      * @throws DukeException the exceptions which can happen
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage, TaskList matchedTasks) throws DukeException {
         // Do nothing
     }
 }

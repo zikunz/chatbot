@@ -18,6 +18,7 @@ public class Duke {
 
     private Storage storage;
     private TaskList tasks;
+    private TaskList matchedTasks = new TaskList();
     private Ui ui;
     private Parser parser = new Parser();
 
@@ -42,7 +43,7 @@ public class Duke {
             try {
                 String userInput = ui.readCommand();
                 Command userCommand = parser.processInput(userInput);
-                userCommand.execute(tasks, ui, storage);
+                userCommand.execute(tasks, ui, storage, matchedTasks);
                 shouldExit = userCommand.shouldExit();
             } catch (DukeException e) {
                 ui.printMessage(Message.WRONG_COMMAND_ERROR_MESSAGE);

@@ -20,6 +20,10 @@ public class Task {
         this.isDone = isDone;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     /**
      * Provides the status of the task.
      *
