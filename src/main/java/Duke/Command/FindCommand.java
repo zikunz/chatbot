@@ -7,7 +7,12 @@ import Duke.Storage.Storage;
 import Duke.TaskList.TaskList;
 import Duke.Ui.Ui;
 
-public class ListCommand extends Command {
+public class FindCommand extends Command {
+    private final String keyword;
+
+    public FindCommand(String keyword) {
+        this.keyword = keyword;
+    }
 
     @Override
     public boolean shouldExit() {
@@ -17,17 +22,11 @@ public class ListCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage, TaskList matchedTasks) throws DukeException {
         ui.printMessage(SpaceAndLine.SEPARATION_LINE);
-        switch (tasks.getSize()) {
-        case 0:
-            System.out.println(Message.EMPTY_LIST_MESSAGE);
-            break;
-        case 1:
-            System.out.println(Message.ONE_TASK_IN_LIST_MESSAGE);
-            break;
-        default:
-            System.out.println(Message.MORE_THAN_ONE_TASK_IN_LIST_MESSAGE);
-        }
-        ui.printTasks(tasks);
+        ui.printMessage(SpaceAndLine.SHORT_SPACE + Message.SHOW_MATCHING_TASKS_MESSAGE);
+
+        tasks.findKeyword(keyword);
+        ui.printMatchedTasks(matchedTasks);
+
         ui.printMessage(SpaceAndLine.SEPARATION_LINE);
     }
 }

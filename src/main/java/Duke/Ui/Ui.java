@@ -31,4 +31,8 @@ public class Ui {
     public void printTasks(TaskList tasks) {
         tasks.displayList();
     }
+
+    public void printMatchedTasks(TaskList matchedTasks) {
+        matchedTasks.DisplayMatchedTasks();
+    }
 }

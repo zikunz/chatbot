@@ -12,4 +12,5 @@ public class Number {
     public static final int EVENT_COMMAND_LENGTH_ADD_ONE = 6;
     public static final int DONE_COMMAND_LENGTH_ADD_ONE = 5;
     public static final int DELETE_COMMAND_LENGTH_ADD_ONE = 7;
+    public static final int FIND_COMMAND_LENGTH_ADD_ONE = 5;
 }
