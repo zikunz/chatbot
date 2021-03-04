@@ -51,6 +51,9 @@ public class Duke {
         ui.printMessage(Message.EXIT_MESSAGE);
     }
 
+    /**
+     * Create a new instance of Duke with data/Duke.txt and run the program.
+     */
     public static void main(String[] args) {
         new Duke(folderName, fileName).run();
     }

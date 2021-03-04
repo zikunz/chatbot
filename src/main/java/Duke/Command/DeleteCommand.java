@@ -9,6 +9,9 @@ import Duke.Ui.Ui;
 
 import java.io.IOException;
 
+/**
+ * Represents the command call when the user deletes some task.
+ */
 public class DeleteCommand extends Command {
     private int index;
 
@@ -21,6 +24,14 @@ public class DeleteCommand extends Command {
         return false;
     }
 
+    /**
+     * Delete the task, and update the file.
+     *
+     * @param tasks the list of tasks
+     * @param ui outputs to be printed
+     * @param storage store data into Duke.txt
+     * @throws DukeException the exceptions which can happen
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         ui.printMessage(SpaceAndLine.SEPARATION_LINE);

@@ -3,6 +3,9 @@ package Duke.Task;
 import Duke.Constant.Symbol;
 import Duke.Constant.Number;
 
+/**
+ * Represents the task objects.
+ */
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -17,10 +20,18 @@ public class Task {
         this.isDone = isDone;
     }
 
+    /**
+     * Provides the status of the task.
+     *
+     * @return returns a tick if the task is done, and returns a cross if the task is not done
+     */
     public String getStatusIcon() {
         return (isDone ? Symbol.DONE_SYMBOL : Symbol.NOT_DONE_SYMBOL);
     }
 
+    /**
+     * Set a task's status as done.
+     */
     public void setAsDone() {
         this.isDone = true;
     }
@@ -37,6 +48,11 @@ public class Task {
         }
     }
 
+    /**
+     * Returns the string to be printed in the list.
+     *
+     * @return the task's details
+     */
     public String toString() {
         return "";
     }

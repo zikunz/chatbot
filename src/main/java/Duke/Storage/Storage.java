@@ -15,6 +15,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Creates the folder and file path if it's not already created and load the data into the file.
+ */
 public class Storage {
     private static final String LETTER_T = "T";
     private static final String LETTER_D = "D";

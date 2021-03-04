@@ -15,6 +15,9 @@ import Duke.Ui.Ui;
 
 import java.io.IOException;
 
+/**
+ * Represents the command call when the user adds some task.
+ */
 public class AddCommand extends Command {
     private String taskType;
     private String content;
@@ -29,6 +32,14 @@ public class AddCommand extends Command {
         return false;
     }
 
+    /**
+     * Adds a specific task and update the Duke file.
+     *
+     * @param tasks the list of tasks
+     * @param ui outputs to be printed
+     * @param storage store data into the Duke file
+     * @throws DukeException the exceptions which can happen
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task task;

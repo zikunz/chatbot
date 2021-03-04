@@ -9,6 +9,9 @@ import Duke.Ui.Ui;
 
 import java.io.IOException;
 
+/**
+ * Represents the command call when the user mark a task as done.
+ */
 public class DoneCommand extends Command {
     private int index;
 
@@ -21,6 +24,14 @@ public class DoneCommand extends Command {
         return false;
     }
 
+    /**
+     * Mark a specific task as done and update the Duke file.
+     *
+     * @param tasks the list of tasks
+     * @param ui outputs to be printed
+     * @param storage store data into Duke.txt
+     * @throws DukeException the exceptions which can happen
+     * */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         tasks.setTaskToBeDone(index);
