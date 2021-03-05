@@ -7,6 +7,7 @@ chosen as a placeholder name, in honor of Duke, the Java Mascot.
 ## Features
 #### Adding a To-do's: `todo`
 Adds a to-do's to the task list.  
+
 **Format**: `todo DESCRIPTION`    
 
 Example:
@@ -76,7 +77,8 @@ Expected outcome:
 ```
 
 #### Finding Task(s): `find`
-Prints all tasks containing the keyword given by the user.  
+Prints all tasks containing the keyword given by the user. 
+
 **Format**:`find KEYWORD`  
 
 Example:
@@ -92,9 +94,9 @@ Expected outcome:
 ```
 
 #### Deleting a Task: `delete`
-Deletes the task with the given index.  
-**Format**:`delete INDEX`  
-Note that the index given should be valid
+Deletes the task with the given index. Note that the index given should be valid. 
+
+**Format**:`delete INDEX`
 
 Example:
 ```$xslt
@@ -109,9 +111,9 @@ Expected outcome:
     ____________________________________________________________
 ```
 #### Mark a Task as Done: `done`
-Marks a task with the given index as done.  
+Marks a task with the given index as done. Note that the index given should be valid.
+
 **Format**:`done INDEX`  
-Note that the index given should be valid
 
 Example:
 ```$xslt
@@ -141,7 +143,8 @@ Expected outcome:
 ```
 #### Exit the Application: `bye`
 Exits the application.  
-**Format**:
+
+**Format**: bye
 
 Example:
 ```$xslt
