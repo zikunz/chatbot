@@ -32,7 +32,7 @@ public class Event extends Task {
 
     @Override
     public String toPrintedFormat() {
-        return TaskType.EVENT_TYPE + " | " + super.getIntegerType() + " |" + description + " | " + getPeriod();
+        return TaskType.EVENT_TYPE + " | " + super.getIntegerType() + " | " + description + " | " + getPeriod();
     }
 
     @Override

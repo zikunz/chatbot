@@ -43,19 +43,16 @@ public class Duke {
         while (!shouldExit) {
             try {
                 String userInput = ui.readCommand();
-                Command userCommand = parser.processInput(userInput);
+                Command userCommand = parser.processInput(userInput, tasks);
                 userCommand.execute(tasks, ui, storage, matchedTasks, sameDateTasks);
                 shouldExit = userCommand.shouldExit();
             } catch (DukeException e) {
-                ui.printMessage(Message.WRONG_COMMAND_ERROR_MESSAGE);
+                ui.showError(e.getMessage());
             }
         }
         ui.printMessage(Message.EXIT_MESSAGE);
     }
 
-    /**
-     * Create a new instance of Duke with data/Duke.txt and run the program.
-     */
     public static void main(String[] args) {
         new Duke(folderName, fileName).run();
     }

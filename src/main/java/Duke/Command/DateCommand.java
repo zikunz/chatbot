@@ -9,6 +9,9 @@ import Duke.Ui.Ui;
 
 import java.time.LocalDate;
 
+/**
+ * DateCommand helps the user finds a task which occur on the date specified.
+ */
 public class DateCommand extends Command {
     private final String dateString;
     private LocalDate date;
@@ -22,6 +25,16 @@ public class DateCommand extends Command {
         return false;
     }
 
+    /**
+     * Finds a task which occur on the date specified and print it out to the user
+     *
+     * @param tasks the list of tasks
+     * @param ui do outputs
+     * @param storage store the data
+     * @param matchedTasks the list of matched tasks
+     * @param sameDateTasks the list of tasks occurring on the same specified date
+     * @throws DukeException the exceptions which can happen during add command execution
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage, TaskList matchedTasks, TaskList sameDateTasks)
             throws DukeException {
@@ -31,8 +44,7 @@ public class DateCommand extends Command {
         date = LocalDate.parse(dateString);
         tasks.findDate(date);
 
-        ui.printsameDateTasks(sameDateTasks);
+        ui.printSameDateTasks(sameDateTasks);
         ui.printMessage(SpaceAndLine.SEPARATION_LINE);
-
     }
 }

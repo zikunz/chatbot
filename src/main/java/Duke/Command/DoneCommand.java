@@ -10,7 +10,7 @@ import Duke.Ui.Ui;
 import java.io.IOException;
 
 /**
- * Represents the command call when the user mark a task as done.
+ * DoneCommand helps the user marks a specific task as done.
  */
 public class DoneCommand extends Command {
     private int index;
@@ -25,13 +25,13 @@ public class DoneCommand extends Command {
     }
 
     /**
-     * Mark a specific task as done and update the Duke file.
+     * Marks a specific task as done and updates Duke.txt.
      *
      * @param tasks the list of tasks
      * @param ui outputs to be printed
      * @param storage store data into Duke.txt
      * @throws DukeException the exceptions which can happen
-     * */
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage, TaskList matchedTasks, TaskList sameDateTasks)
             throws DukeException {
@@ -44,8 +44,8 @@ public class DoneCommand extends Command {
 
         try {
             storage.writeToFile(tasks);
-        } catch (IOException ioException) {
-            throw new DukeException("File not found");
+        } catch (IOException e) {
+            throw new DukeException(Message.FILE_NOT_FOUND_ERROR_MESSAGE);
         }
     }
 }

@@ -6,7 +6,7 @@ import Duke.TaskList.TaskList;
 import java.util.Scanner;
 
 /**
- * Ui receives all inputs from the user before producing outputs show to him / her.
+ * Ui receives inputs from the user and subsequently produces relevant outputs to him / her.
  */
 public class Ui {
     private final Scanner userInput;
@@ -15,12 +15,17 @@ public class Ui {
         userInput = new Scanner(System.in);
     }
 
+    /**
+     * Prints a message received.
+     *
+     * @param message some message which needs to printed by a ui
+     */
     public void printMessage(String message) {
         System.out.println(message);
     }
 
     /**
-     * Prints the message telling the user how many tasks are there.
+     * Prints a message about how many tasks there are.
      *
      * @param numberOfTasks number of tasks
      */
@@ -33,26 +38,39 @@ public class Ui {
     }
 
     /**
-     * Reads the user input line by line.
+     * Reads user input line by line.
      *
-     * @return the string of the line.
+     * @return the string of the line read
      */
     public String readCommand() {
         return userInput.nextLine();
     }
 
     /**
-     * Prints all tasks to the user.
+     * Prints all the tasks.
      */
     public void printTasks(TaskList tasks) {
         tasks.displayList();
     }
 
+    /**
+     * Prints all the matched tasks after a find command.
+     */
     public void printMatchedTasks(TaskList matchedTasks) {
         matchedTasks.DisplayMatchedTasks();
     }
 
-    public void printsameDateTasks(TaskList sameDateTasks) {
+    /**
+     * Prints all the tasks with the same date specified in a find command.
+     */
+    public void printSameDateTasks(TaskList sameDateTasks) {
         sameDateTasks.DisplaySameDateTasks();
+    }
+
+    /**
+     * Prints a relevant error message.
+     */
+    public void showError(String errorMessage) {
+        System.out.println(errorMessage);
     }
 }

@@ -10,7 +10,7 @@ import Duke.Ui.Ui;
 import java.io.IOException;
 
 /**
- * Represents the command call when the user deletes some task.
+ * DeleteCommand helps the user delete a task.
  */
 public class DeleteCommand extends Command {
     private int index;
@@ -24,13 +24,15 @@ public class DeleteCommand extends Command {
         return false;
     }
 
-    /**
-     * Delete the task, and update the file.
+     /**
+     * Deletes a task and updates Duke.txt.
      *
      * @param tasks the list of tasks
-     * @param ui outputs to be printed
-     * @param storage store data into Duke.txt
-     * @throws DukeException the exceptions which can happen
+     * @param ui do outputs
+     * @param storage store the data
+     * @param matchedTasks the list of matched tasks
+     * @param sameDateTasks the list of tasks occurring on the same specified date
+     * @throws DukeException the exceptions which can happen during add command execution
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage, TaskList matchedTasks, TaskList sameDateTasks)
@@ -46,8 +48,8 @@ public class DeleteCommand extends Command {
 
         try {
             storage.writeToFile(tasks);
-        } catch (IOException ioException) {
-            throw new DukeException("File not found");
+        } catch (IOException e) {
+            throw new DukeException(Message.FILE_NOT_FOUND_ERROR_MESSAGE);
         }
     }
 }

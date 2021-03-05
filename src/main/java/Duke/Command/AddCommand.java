@@ -16,7 +16,7 @@ import Duke.Ui.Ui;
 import java.io.IOException;
 
 /**
- * Represents the command call when the user adds some task.
+ * AddCommand helps the user adds a task.
  */
 public class AddCommand extends Command {
     private String taskType;
@@ -33,12 +33,14 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Adds a specific task and update the Duke file.
+     * Adds a task of the correct type, print it out to the user and store it in Duke.txt.
      *
      * @param tasks the list of tasks
-     * @param ui outputs to be printed
-     * @param storage store data into the Duke file
-     * @throws DukeException the exceptions which can happen
+     * @param ui do outputs
+     * @param storage store the data
+     * @param matchedTasks the list of matched tasks
+     * @param sameDateTasks the list of tasks occurring on the same specified date
+     * @throws DukeException the exceptions which can happen during add command execution
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage, TaskList matchedTasks, TaskList sameDateTasks)
@@ -70,8 +72,8 @@ public class AddCommand extends Command {
 
         try {
             storage.writeToFile(tasks);
-        } catch (IOException ioException) {
-            throw new DukeException("File not found");
+        } catch (IOException e) {
+            throw new DukeException(Message.FILE_NOT_FOUND_ERROR_MESSAGE);
         }
     }
 }

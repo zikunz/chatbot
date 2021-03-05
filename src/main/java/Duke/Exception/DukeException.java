@@ -1,7 +1,7 @@
 package Duke.Exception;
 
 /**
- * Represents all possible exceptions that can happen
+ * DukeException presents all possible exceptions that can happen.
  */
 public class DukeException extends Exception {
 

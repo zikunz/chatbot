@@ -8,7 +8,7 @@ import Duke.TaskList.TaskList;
 import Duke.Ui.Ui;
 
 /**
- * Represents the command call when the user wants to see the whole list of tasks.
+ * ListCommand helps the user print the task(s) in the list.
  */
 public class ListCommand extends Command {
 
@@ -23,7 +23,7 @@ public class ListCommand extends Command {
      * @param tasks the list of tasks
      * @param ui outputs to be printed
      * @param storage store data into Duke.txt
-     * @throws DukeException the exceptions which can happen in this function
+     * @throws DukeException the exceptions which can happen
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage, TaskList matchedTasks, TaskList sameDateTasks)
