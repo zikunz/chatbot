@@ -60,7 +60,7 @@ Expected outcome:
 
 #### Listing all Task(s): `list`
 Prints all task(s) in the list.  
-**Format**: list
+**Format**: `list`
 
 Example:
 ```$xslt
@@ -132,7 +132,7 @@ Prints all tasks occurring on a specified date.
 
 Example:
 ```$xslt
-date 2021-03-01
+date 2021-05-01
 ```
 Expected outcome:
 ```$xslt
@@ -144,7 +144,7 @@ Expected outcome:
 #### Exit the Application: `bye`
 Exits the application.  
 
-**Format**: bye
+**Format**: `bye`
 
 Example:
 ```$xslt
