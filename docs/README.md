@@ -158,8 +158,8 @@ Expected outcome:
 Action | Format & Example
 --------------------------------|--------------------------------------------------------------
 Add Todo | `todo DESCRIPTION`  e.g.`todo CG1112 final project`
-Add Event | `event DESCRIPTION /at TIME`   e.g.`event CS2113T team meeting /at 2020-03-07 14:00`
-Add Deadline | `deadline DESCRIPTION /by TIME`   e.g.`deadline submit CS2113T iP /by 2020-03-05 23:59`
+Add Event | `event DESCRIPTION /at TIME`   e.g.`event CS2113T team meeting /at 2020-03-07`
+Add Deadline | `deadline DESCRIPTION /by TIME`   e.g.`deadline submit CS2113T iP /by 2020-03-05`
 List Task(s) | `list`
 Find Task(s) | `find KEYWORD`   e.g.`find EE`
 Delete Task | `delete INDEX`   e.g.`delete 2`
