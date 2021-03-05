@@ -1,6 +1,6 @@
 # Duke User Guide
 
-##Introduction
+## Introduction
 Duke is a personal assistant chatbox which helps you keep track of various to-do's, deadlines and events. The name Duke
 chosen as a placeholder name, in honor of Duke, the Java Mascot. 
 
