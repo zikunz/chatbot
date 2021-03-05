@@ -34,4 +34,9 @@ public class Deadline extends Task {
     public String toPrintedFormat() {
         return TaskType.DEADLINE_TYPE + " | " + super.getIntegerType() + " | " + description + " | " + getDeadline();
     }
+
+    @Override
+    public String getDate() {
+        return getDeadline();
+    }
 }

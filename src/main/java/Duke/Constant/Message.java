@@ -38,10 +38,12 @@ public class Message {
             SpaceAndLine.SEPARATION_LINE + "\n";
     public static final String ADD_TASK_MESSAGE = SpaceAndLine.SHORT_SPACE + "Got it. I've added this task:";
     public static final String REMOVE_TASK_MESSAGE = SpaceAndLine.SHORT_SPACE + "Noted. I've removed this task:";
-    public static final String SHOW_MATCHING_TASKS_MESSAGE = "Here are the matching tasks in your list:";
+    public static final String SHOW_MATCHING_KEYWORD_TASKS_MESSAGE = "Here are the matching task(s) in your list:";
     public static final String EXIT_MESSAGE = SpaceAndLine.SEPARATION_LINE + "\n" +
             "     Bye. Hope to see you again soon!\n" +
             SpaceAndLine.SEPARATION_LINE;
     public static final String NON_EXISTING_LETTER_WRONG_MESSAGE = "Something wrong happened!";
     public static final String LOADING_ERROR_MESSAGE = "Unable to load any file!";
+    public static final String SHOW_SAME_DATE_TASKS_MESSAGE =
+            "Here are the task(s) occurring on the same date in your list:";
 }

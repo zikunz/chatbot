@@ -3,6 +3,7 @@ package Duke.TaskList;
 import Duke.Constant.SpaceAndLine;
 import Duke.Task.Task;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +11,8 @@ import java.util.ArrayList;
  */
 public class TaskList {
     private static ArrayList<Task> tasks = new ArrayList<Task>();
-    private static ArrayList<Task> matchedTasks = new ArrayList<>();
+    private static ArrayList<Task> matchedTasks = new ArrayList<Task>();
+    private static ArrayList<Task> sameDateTasks = new ArrayList<Task>();
 
     public TaskList() {
 
@@ -114,6 +116,22 @@ public class TaskList {
     public void DisplayMatchedTasks() {
         for (int i = 0; i < matchedTasks.size(); i++) {
             System.out.println(SpaceAndLine.SHORT_SPACE + (i + 1) + "." + matchedTasks.get(i));
+        }
+    }
+
+    public void findDate(LocalDate date) {
+        for (int i = 0; i < tasks.size(); i++) {
+            String dateString = getTask(i).getDate();
+            LocalDate convertedDate = LocalDate.parse(dateString);
+            if (date.equals(convertedDate)) {
+                sameDateTasks.add(getTask(i));
+            }
+        }
+    }
+
+    public void DisplaySameDateTasks() {
+        for (int i = 0; i < sameDateTasks.size(); i++) {
+            System.out.println(SpaceAndLine.SHORT_SPACE + (i + 1) + "." + sameDateTasks.get(i));
         }
     }
 }

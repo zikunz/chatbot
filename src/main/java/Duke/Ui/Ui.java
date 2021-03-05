@@ -51,4 +51,8 @@ public class Ui {
     public void printMatchedTasks(TaskList matchedTasks) {
         matchedTasks.DisplayMatchedTasks();
     }
+
+    public void printsameDateTasks(TaskList sameDateTasks) {
+        sameDateTasks.DisplaySameDateTasks();
+    }
 }
