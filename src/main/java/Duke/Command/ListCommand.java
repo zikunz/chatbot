@@ -7,6 +7,9 @@ import Duke.Storage.Storage;
 import Duke.TaskList.TaskList;
 import Duke.Ui.Ui;
 
+/**
+ * Represents the command call when the user wants to see the whole list of tasks.
+ */
 public class ListCommand extends Command {
 
     @Override
@@ -14,6 +17,14 @@ public class ListCommand extends Command {
         return false;
     }
 
+    /**
+     * Prints the list of tasks.
+     *
+     * @param tasks the list of tasks
+     * @param ui outputs to be printed
+     * @param storage store data into Duke.txt
+     * @throws DukeException the exceptions which can happen in this function
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage, TaskList matchedTasks) throws DukeException {
         ui.printMessage(SpaceAndLine.SEPARATION_LINE);
