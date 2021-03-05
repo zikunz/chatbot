@@ -34,4 +34,9 @@ public class Event extends Task {
     public String toPrintedFormat() {
         return TaskType.EVENT_TYPE + " | " + super.getIntegerType() + " |" + description + " | " + getPeriod();
     }
+
+    @Override
+    public String getDate() {
+        return getPeriod();
+    }
 }

@@ -18,6 +18,7 @@ public class Parser {
     private static final String COMMAND_LIST = "list";
     private static final String COMMAND_DELETE = "delete";
     private static final String COMMAND_FIND = "find";
+    private static final String COMMAND_DATE = "date";
 
     /**
      * This function calls the correct command to process different user inputs.
@@ -58,8 +59,6 @@ public class Parser {
             return new AddCommand(TaskType.EVENT_TYPE, userInput.substring(Number.EVENT_COMMAND_LENGTH_ADD_ONE));
         case COMMAND_DONE:
             return new DoneCommand(Integer.parseInt(userInput.substring(Number.DONE_COMMAND_LENGTH_ADD_ONE)) - 1);
-        case COMMAND_BYE:
-            return new ExitCommand();
         case COMMAND_LIST:
             return new ListCommand();
         case COMMAND_DELETE:
@@ -67,6 +66,10 @@ public class Parser {
                     (Integer.parseInt(userInput.substring(Number.DELETE_COMMAND_LENGTH_ADD_ONE)) - 1);
         case COMMAND_FIND:
             return new FindCommand(userInput.substring(Number.FIND_COMMAND_LENGTH_ADD_ONE));
+        case COMMAND_DATE:
+            return new DateCommand(userInput.substring(Number.DATE_COMMAND_LENGTH_ADD_ONE));
+        case COMMAND_BYE:
+            return new ExitCommand();
         default:
             throw new DukeException(Message.WRONG_COMMAND_ERROR_MESSAGE);
         }
