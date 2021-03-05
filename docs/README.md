@@ -29,13 +29,13 @@ Adds an event to the task list. Note that the format for `TIME` should take the 
 
 Example:
 ```$xslt
-event NUS blood donation event /at 2020-05-01
+event NUS blood donation event /at 2021-05-01
 ```
 Expected outcome:
 ```$xslt
     ____________________________________________________________
      Got it. I've added this task:
-       [E][✘] NUS blood donation event (at: 2020-05-01)
+       [E][✘] NUS blood donation event (at: 2021-05-01)
      Now you have 2 tasks in the list.
     ____________________________________________________________
 ```
@@ -47,13 +47,13 @@ Adds a deadline to the task list. Note that the format for `TIME` should take th
 
 Example:
 ```$xslt
-deadline CG1112 design report /by 2020-03-07
+deadline CG1112 design report /by 2021-03-07
 ```
 Expected outcome:
 ```$xslt
     ____________________________________________________________
      Got it. I've added this task:
-       [D][✘] CG1112 design report (by: 2020-03-07)
+       [D][✘] CG1112 design report (by: 2021-03-07)
      Now you have 3 tasks in the list.
     ____________________________________________________________
 ```
@@ -71,8 +71,8 @@ Expected outcome:
     ____________________________________________________________
      Here are the tasks in your list:
      1.[T][✘] attend CS2113T Lecture
-     2.[E][✘] NUS blood donation event (at: 2020-05-01)
-     3.[D][✘] CG1112 design report (by: 2020-03-07)
+     2.[E][✘] NUS blood donation event (at: 2021-05-01)
+     3.[D][✘] CG1112 design report (by: 2021-03-07)
     ____________________________________________________________
 ```
 
@@ -123,7 +123,7 @@ Expected outcome:
 ```$xslt
     ____________________________________________________________
      Nice! I've marked this task as done:
-       [E][✓] NUS blood donation event (at: 2020-05-01)
+       [E][✓] NUS blood donation event (at: 2021-05-01)
     ____________________________________________________________
 ```
 #### Find Task(s) with a Date: `date`
@@ -138,7 +138,7 @@ Expected outcome:
 ```$xslt
     ____________________________________________________________
      Here are the task(s) occurring on the same date in your list:
-     1.[E][✘] NUS blood donation event (at: 2020-05-01)
+     1.[E][✘] NUS blood donation event (at: 2021-05-01)
     ____________________________________________________________
 ```
 #### Exit the Application: `bye`
@@ -162,11 +162,11 @@ Expected outcome:
 Action | Format & Example
 --------------------------------|--------------------------------------------------------------
 Add Todo | `todo DESCRIPTION`  e.g.`todo CG1112 final project`
-Add Event | `event DESCRIPTION /at TIME`   e.g.`event CS2113T team meeting /at 2020-03-07 14:00`
-Add Deadline | `deadline DESCRIPTION /by TIME`   e.g.`deadline submit CS2113T iP /by 2020-03-05 23:59`
+Add Event | `event DESCRIPTION /at TIME`   e.g.`event CS2113T team meeting /at 2021-03-07 14:00`
+Add Deadline | `deadline DESCRIPTION /by TIME`   e.g.`deadline submit CS2113T iP /by 2021-03-05 23:59`
 List Task(s) | `list`
 Find Task(s) | `find KEYWORD`   e.g.`find EE`
 Delete Task | `delete INDEX`   e.g.`delete 2`
 Done Task | `done INDEX`   e.g.`done 3`
-Find Task on Date | `date DATE`   e.g.`date 2020-03-10`
+Find Task on Date | `date DATE`   e.g.`date 2021-03-10`
 Exit | `bye`
