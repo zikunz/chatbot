@@ -60,6 +60,7 @@ Expected outcome:
 
 #### Listing all Task(s): `list`
 Prints all task(s) in the list.  
+
 **Format**: `list`
 
 Example:
@@ -127,7 +128,8 @@ Expected outcome:
     ____________________________________________________________
 ```
 #### Find Task(s) with a Date: `date`
-Prints all tasks occurring on a specified date.  
+Prints all tasks occurring on a specified date.
+
 **Format**:`date DATE`  
 
 Example:
