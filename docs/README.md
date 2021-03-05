@@ -2,12 +2,13 @@
 
 ## Introduction
 Duke is a personal assistant chatbox which helps you keep track of various to-do's, deadlines and events. The name Duke
-chosen as a placeholder name, in honor of Duke, the Java Mascot. 
+chosen as a placeholder name, in honor of Duke, the Java Mascot.
 
 ## Features
 #### Adding a To-do's: `todo`
 Adds a to-do's to the task list.  
-**Format**: `todo DESCRIPTION`  
+**Format**: `todo DESCRIPTION`    
+
 Example:
 ```$xslt
 todo attend CS2113T Lecture
@@ -21,9 +22,10 @@ Expected outcome:
     ____________________________________________________________
 ```
 #### Adding an Event: `event`
-Adds an event to the task list.  
-**Format**: `event DESCRIPTION /at TIME`  
-Note that the format for `TIME` should take the form of `yyyy-MM-dd`
+Adds an event to the task list. Note that the format for `TIME` should take the form of `YYYY-MM-DD`
+
+**Format**: `event DESCRIPTION /at TIME`      
+
 Example:
 ```$xslt
 event NUS blood donation event /at 2020-05-01
@@ -38,9 +40,9 @@ Expected outcome:
 ```
 
 #### Adding a Deadline: `deadline`
-Adds a deadline to the task list.  
-**Format**: `deadline DESCRIPTION /by TIME`  
-Note that the format for `TIME` should take the form of `yyyy-MM-dd`
+Adds a deadline to the task list. Note that the format for `TIME` should take the form of `YYYY-MM-DD`
+**Format**: `deadline DESCRIPTION /by TIME`
+
 Example:
 ```$xslt
 deadline CG1112 design report /by 2020-03-07
@@ -56,7 +58,9 @@ Expected outcome:
 
 #### Listing all Task(s): `list`
 Prints all task(s) in the list.  
-**Format**:
+**Format**: list
+
+Example:
 ```$xslt
 list
 ```
@@ -73,6 +77,7 @@ Expected outcome:
 #### Finding Task(s): `find`
 Prints all tasks containing the keyword given by the user.  
 **Format**:`find KEYWORD`  
+
 Example:
 ```$xslt
 find CS2113T
@@ -89,6 +94,7 @@ Expected outcome:
 Deletes the task with the given index.  
 **Format**:`delete INDEX`  
 Note that the index given should be valid
+
 Example:
 ```$xslt
 delete 1
@@ -105,6 +111,7 @@ Expected outcome:
 Marks a task with the given index as done.  
 **Format**:`done INDEX`  
 Note that the index given should be valid
+
 Example:
 ```$xslt
 done 1
@@ -119,6 +126,7 @@ Expected outcome:
 #### Find Task(s) with a Date: `date`
 Prints all tasks occurring on a specified date.  
 **Format**:`date DATE`  
+
 Example:
 ```$xslt
 date 2021-03-01
@@ -133,6 +141,8 @@ Expected outcome:
 #### Exit the Application: `bye`
 Exits the application.  
 **Format**:
+
+Example:
 ```$xslt
 bye
 ```
